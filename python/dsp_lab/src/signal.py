@@ -54,7 +54,8 @@ class signal(list):
 
         TODO: scalar+signal, signal-scalar, signal+=scalar
         """
-        assert type(scalar) in (int, float), "Provided scalar has type " + str(type(scalar))
+        assert type(scalar) in (int, float),\
+            "Provided scalar has type " + str(type(scalar))
         return signal(map(lambda sample: sample + scalar, self))
 
     def __mul__(self, scalar):
@@ -79,7 +80,8 @@ class signal(list):
 
         TODO: scalar*signal, signal*=scalar
         """
-        assert type(scalar) in (int, float), "Provided scalar has type " + str(type(scalar))
+        assert type(scalar) in (int, float),\
+            "Provided scalar has type " + str(type(scalar))
         return signal(map(lambda sample: sample * scalar, self))
 
 if __name__ == "__main__":
