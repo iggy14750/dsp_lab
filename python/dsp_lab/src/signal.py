@@ -50,7 +50,7 @@ class signal(list):
         >>> s + [4,5,6]
         Traceback (most recent call last):
             ...
-        AssertionError: Provided scalar has type <class 'list'>
+        TypeError: Provided scalar has type <class 'list'>
 
         The positions of signal and scalar can reverse.
         >>> 3 + s
@@ -69,22 +69,42 @@ class signal(list):
         >>> s += {45: 2}
         Traceback (most recent call last):
             ...
-        AssertionError: Provided scalar has type <class 'dict'>
+        TypeError: Provided scalar has type <class 'dict'>
+
+        Sythesize two signals together, by adding them piece-wise.
+        >>> signal([1,2,3]) + signal([6,5,4])
+        [7, 7, 7]
+
+        Attempting to add two signals of inequal lengths will throw.
+        >>> signal([3,4,2]) + signal([3])
+        Traceback (most recent call last):
+            ...
+        TypeError: Provided scalar has type <class '__main__.signal'>
+
+        Synthesize two vectors in-place
+        >>> s += signal([6, 1, 2])
+        >>> s
+        [9, 5, 7]
+        
+        Override  __repr__ from list?
+        TODO: Better Exceptions raised.
         """
-        assert type(scalar) in (int, float),\
-            "Provided scalar has type " + str(type(scalar))
-        return signal(map(lambda sample: sample + scalar, self))
+        if type(scalar) in (int, float):
+            return signal(map(lambda sample: sample + scalar, self))
+        elif type(scalar) == signal and len(self) == len(scalar):
+            output = signal()
+            for i in range(len(self)):
+                output.append(self[i] + scalar[i])
+            return output
+        else:
+            raise TypeError("Provided scalar has type " + str(type(scalar)))
 
     def __radd__(self, scalar):
         return self + scalar
     def __sub__(self, scalar):
         return self + (-1*scalar)
     def __iadd__(self, scalar):
-        assert type(scalar) in (int, float),\
-            "Provided scalar has type " + str(type(scalar))
-        for i in range(len(self)):
-            self[i] += scalar
-        return self
+        return self + scalar
 
 
     def __mul__(self, scalar):
