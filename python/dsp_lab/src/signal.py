@@ -107,11 +107,29 @@ class signal(list):
             ...
         AssertionError: Provided scalar has type <class 'list'>
 
-        TODO: scalar*signal, signal*=scalar
+        scalar * signal
+        >>> 5 * s
+        [5, 10, 15]
+
+        In-place signal *= scalar
+        >>> s *= 3
+        >>> s
+        [3, 6, 9]
+
+        Division by scalar. TODO: Floating-point comparisons.
+        In-place division by a scalar.
+
+        How does order of operations work?
+        >>> 5 * s + 1
+        [16, 31, 46]
         """
         assert type(scalar) in (int, float),\
             "Provided scalar has type " + str(type(scalar))
         return signal(map(lambda sample: sample * scalar, self))
+    def __rmul__(self, scalar):
+        return self * scalar
+    def __imul__(self, scalar):
+        return self * scalar
 
 if __name__ == "__main__":
     import doctest
