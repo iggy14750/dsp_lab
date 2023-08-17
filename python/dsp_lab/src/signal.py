@@ -52,11 +52,32 @@ class signal(list):
             ...
         AssertionError: Provided scalar has type <class 'list'>
 
-        TODO: scalar+signal, signal-scalar, signal+=scalar
+        The positions of signal and scalar can reverse.
+        >>> 3 + s
+        [4, 5, 6]
+
+        We can also use the subtraction operator.
+        >>> s - 1
+        [0, 1, 2]
+
+        Modify the signl in place using the += operator.
+        >>> s += 2
+        >>> s
+        [3, 4, 5]
         """
         assert type(scalar) in (int, float),\
             "Provided scalar has type " + str(type(scalar))
         return signal(map(lambda sample: sample + scalar, self))
+
+    def __radd__(self, scalar):
+        return self + scalar
+    def __sub__(self, scalar):
+        return self + (-1*scalar)
+    def __iadd__(self, scalar):
+        for i in range(len(self)):
+            self[i] += scalar
+        return self
+
 
     def __mul__(self, scalar):
         """Use the * operator to scale the signal by a scalar.
