@@ -64,6 +64,12 @@ class signal(list):
         >>> s += 2
         >>> s
         [3, 4, 5]
+
+        Attempt to add non-scalar.
+        >>> s += {45: 2}
+        Traceback (most recent call last):
+            ...
+        AssertionError: Provided scalar has type <class 'dict'>
         """
         assert type(scalar) in (int, float),\
             "Provided scalar has type " + str(type(scalar))
@@ -74,6 +80,8 @@ class signal(list):
     def __sub__(self, scalar):
         return self + (-1*scalar)
     def __iadd__(self, scalar):
+        assert type(scalar) in (int, float),\
+            "Provided scalar has type " + str(type(scalar))
         for i in range(len(self)):
             self[i] += scalar
         return self
