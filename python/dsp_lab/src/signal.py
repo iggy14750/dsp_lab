@@ -7,6 +7,13 @@ class signal(list):
     Each said override will include it's own test cases.
     First, here, basic list functionality is ensured.
 
+    Note on terminology
+    - "signal" refers to either this class, or instances thereof.
+      A signal is a list filled with numericl data.
+    - "sample" is one datum stored in said list.
+      Consider it one measurement in a descreete-time system, ie, sound.
+    - "scalar" is a single number which is used in a calculation.
+
     >>> s = signal([1,2,3])
     >>> s[0]
     1
