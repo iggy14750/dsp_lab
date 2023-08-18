@@ -75,6 +75,10 @@ class signal(list):
         >>> signal([1,2,3]) + signal([6,5,4])
         [7, 7, 7]
 
+        Using said synthesis must return a "signal" as well
+        >>> type(signal([1,2,3]) + signal([6,5,4]))
+        <class '__main__.signal'>
+
         Attempting to add two signals of inequal lengths will throw.
         >>> signal([3,4,2]) + signal([3])
         Traceback (most recent call last):
