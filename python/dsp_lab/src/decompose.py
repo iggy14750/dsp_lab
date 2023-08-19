@@ -27,6 +27,29 @@ def even_odd(sig):
         odd.append((sig[n] - sig[N-n]) / 2)
     return (even, odd)
 
+def impulse(sig):
+    """Decompose an N sample signal into N component signals
+    Said signals mean that a system can be analyzed one sample at a time.
+    This approach is called convolution (SEG p. 100).
+
+    >>> s = signal([1,2,3])
+    >>> decomp = impulse(s)
+    >>> decomp
+    [[1, 0, 0], [0, 2, 0], [0, 0, 3]]
+
+    >>> decomp[0] + decomp[1] + decomp[2]
+    [1, 2, 3]
+
+    >>> sum(decomp)
+    [1, 2, 3]
+    """
+    N = len(sig)
+    output_sigs = []
+    for n in range(len(sig)):
+        output_sigs.append(signal([0]*N))
+        output_sigs[n][n] = sig[n]
+    return output_sigs
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
