@@ -50,6 +50,30 @@ def impulse(sig):
         output_sigs[n][n] = sig[n]
     return output_sigs
 
+def step(sig):
+    """Decompose an N sample signal into N component signals
+    Each of which begins with a run of 0s, followed by a "step" to a different value, at which point is plateas.
+
+    >>> s = [5,2,9]
+    >>> x = step(s)
+    >>> x
+    [[5, 5, 5], [0, -3, -3], [0, 0, 7]]
+
+    >>> sum(x)
+    [5, 2, 9]
+    """
+    N = len(sig)
+    output_sigs = []
+    # Special case for x_0[n]
+    output_sigs.append(signal([sig[0]]*N))
+    for n in range(1, N):
+        this_sig = []
+        step_val = sig[n] - sig[n-1]
+        this_sig += [0] * n
+        this_sig += [step_val] * (N - n)
+        output_sigs.append(signal(this_sig))
+    return output_sigs
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
