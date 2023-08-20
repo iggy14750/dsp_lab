@@ -74,6 +74,31 @@ def step(sig):
         output_sigs.append(signal(this_sig))
     return output_sigs
 
+def interlaced(sig):
+    """Interlaced decomposition simply breaks a signal into two components.
+    One of which deals with each sample at an even offset / index.
+    And the other deals with the signals at odd offsets / indecies.
+
+    >>> s = signal([8, 6, 7, 5, 3, 0, 9])
+    >>> even, odd = interlaced(s)
+    >>> even
+    [8, 0, 7, 0, 3, 0, 9]
+    >>> odd
+    [0, 6, 0, 5, 0, 0, 0]
+    >>> even + odd
+    [8, 6, 7, 5, 3, 0, 9]
+    """
+    even = signal()
+    odd = signal()
+    for i in range(len(sig)):
+        even.append(0)
+        odd.append(0)
+        if i % 2 == 0:
+            even[i] = sig[i]
+        else:
+            odd[i] = sig[i]
+    return (even, odd)
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
