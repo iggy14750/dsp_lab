@@ -28,6 +28,34 @@ class signal(list):
     3
     """
 
+    @staticmethod
+    def impulse(**kwargs):
+        """
+        Generate a signal object which can be used to generate an impulse response to a system.
+        Said impulse signal is composed of all zeroes, except for one non-zero sample.
+        Said non-zero element is the value 1 by default, but can be set this value as well.
+        As well as the value, the overall length of the signal, as well as the index / position of that non-zero element within the signal.
+        The default impulse if no arguments are given is 
+
+        >>> signal.impulse()
+        [0, 0, 1, 0, 0]
+
+        >>> signal.impulse(length=4, position=1, value=3)
+        [0, 3, 0, 0]
+        """
+        length = 5
+        position = 2
+        value = 1
+        if "length" in kwargs:
+            length = kwargs["length"]
+        if "position" in kwargs:
+            position = kwargs["position"]
+        if "value" in kwargs:
+            value = kwargs["value"]
+        s = signal([0]*length)
+        s[position] = value
+        return s
+
     def __add__(self, scalar):
         """Use the + operator to add a DC offset to signal.
         That is, add provided scalar to each sample of the signal.
