@@ -45,5 +45,5 @@ References
 8. ESP-01 Pinout https://cdn.sparkfun.com/datasheets/Wireless/WiFi/ESP8266ModuleV1.pdf
 9. ESP-8266 Wikipedia page https://en.wikipedia.org/wiki/ESP8266
 10. ESP-8266 Espressif SDK (FreeRTOS) https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html
-11. ESP-8266 Datasheet
+11. ESP-8266 Datasheet https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf
 
