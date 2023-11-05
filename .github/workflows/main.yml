@@ -5,9 +5,9 @@ jobs:
     steps:
     - name: Install Python
       run: sudo apt install python3
-    - name: PWD
-      run: pwd; ls -la
+    - name: Clone repo
+      run: git clone https://github.com/iggy14750/dsp_lab.git; ls -la
     - name: Run tests
-      run: python3 python/dsp_lab/src/signal.py -v
+      run: python3 dsp_lab/python/dsp_lab/src/signal.py -v
     
     
