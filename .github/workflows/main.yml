@@ -6,7 +6,7 @@ jobs:
     - name: Install Python
       run: sudo apt install python3
     - name: PWD
-      run: pwd
+      run: pwd; ls -la
     - name: Run tests
       run: python3 python/dsp_lab/src/signal.py -v
     
