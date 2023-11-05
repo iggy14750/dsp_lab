@@ -1,0 +1,11 @@
+on: [push]
+jobs:
+  first-one:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Python
+      run: spt install python3
+    - name: Run tests
+      run: ./python/dsp_lab/src/signal.py
+    
+    
