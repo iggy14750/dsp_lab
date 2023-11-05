@@ -1,0 +1,9 @@
+
+on: [push]
+
+  # TODO: We're going to move to Docker later.
+  runs-on: ubuntu-latest
+  steps:
+    run: sudo apt install python3 -y
+    run: cd python/dsp_lab && ./src/signal.py
+
