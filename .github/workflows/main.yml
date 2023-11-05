@@ -5,7 +5,9 @@ jobs:
     steps:
     - name: Install Python
       run: sudo apt install python3
+    - name: PWD
+      run: pwd
     - name: Run tests
-      run: ./python/dsp_lab/src/signal.py
+      run: python3 python/dsp_lab/src/signal.py -v
     
     
