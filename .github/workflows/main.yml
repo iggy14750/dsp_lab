@@ -4,7 +4,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install Python
-      run: spt install python3
+      run: apt install python3
     - name: Run tests
       run: ./python/dsp_lab/src/signal.py
     
