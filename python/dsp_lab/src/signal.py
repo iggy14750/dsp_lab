@@ -29,7 +29,7 @@ class signal(list):
     """
 
     @staticmethod
-    def impulse(**kwargs):
+    def impulse(length=5, position=2, value=1):
         """
         Generate a signal object which can be used to generate an impulse response to a system.
         Said impulse signal is composed of all zeroes, except for one non-zero sample.
@@ -42,16 +42,10 @@ class signal(list):
 
         >>> signal.impulse(length=4, position=1, value=3)
         [0, 3, 0, 0]
+
+        >>> signal.impulse(7, 0, 2)
+        [2, 0, 0, 0, 0, 0, 0]
         """
-        length = 5
-        position = 2
-        value = 1
-        if "length" in kwargs:
-            length = kwargs["length"]
-        if "position" in kwargs:
-            position = kwargs["position"]
-        if "value" in kwargs:
-            value = kwargs["value"]
         s = signal([0]*length)
         s[position] = value
         return s
